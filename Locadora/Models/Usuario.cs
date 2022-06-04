@@ -11,6 +11,7 @@ namespace Locadora.Models
 
         public Usuario(UsuarioViewModel usuarioBase)
         {
+            Nome = usuarioBase.Nome;
             if (usuarioBase.Idade >= IDADE_MAIORIDADE)
             {
                 Idade = usuarioBase.Idade;
@@ -22,11 +23,11 @@ namespace Locadora.Models
             }
         }
 
-        public int Idade;
+        public int Idade { get; set; }
 
-        public string Nome;
+        public string Nome { get; set; }
 
-        public Conta Conta;
+        public Conta Conta { get; set; }
 
     }
 }
