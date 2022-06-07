@@ -1,6 +1,6 @@
-﻿using Locadora.API.Services;
-using Locadora.Models;
+﻿using Locadora.Models;
 using Locadora.Respository;
+using Locadora.Services;
 using Locadora.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +17,7 @@ namespace Locadora.API.Controllers
         [HttpGet]
         public List<Usuario> ListarUsuarios()
         {
-            // Armazenamento vai precisar colocar o
-            // using AulasPCDev.Respository;
-            // no inicio do código
-            // Ctrl + . é um atalho para adicionar esse using.
-
+      
             List<Usuario> listaUsuario = 
                 Armazenamento.Usuarios;
             return Armazenamento.Usuarios.OrderBy(usuario => usuario.Nome).ThenBy(usuario => usuario.Idade)

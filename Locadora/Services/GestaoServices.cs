@@ -11,6 +11,7 @@ namespace Locadora.Services
     {
         private List<Item> _biblioteca = Armazenamento.Biblioteca;
         private SerieViewModel serieRecebida;
+        private FilmeViewModel filmeRecebido;
 
         public void Cadastrar()
         {
@@ -22,7 +23,7 @@ namespace Locadora.Services
             int respotas = int.Parse(Console.ReadLine());
             if (respotas == 1)
             {
-                CadastrarFilme();
+                CadastrarFilme(filmeRecebido);
             }
             if (respotas == 2)
             {
@@ -30,23 +31,18 @@ namespace Locadora.Services
             }
         }
 
-        public void CadastrarFilme()
+        public Item CadastrarFilme(FilmeViewModel filmeRecebido)
         {
             Filme filme = new Filme();
-
-            Console.WriteLine("Qual o nome do filme que deseja cadastrar?");
-            filme.Titulo = Console.ReadLine();
-
-            Console.WriteLine("Quantos fitas deste filme existem?");
-            filme.Quantidade = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Qual o valor da locação deste filme?");
-            filme.Valor = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Qual a duração do filme?");
-            filme.Duracao = int.Parse(Console.ReadLine());
+            filme.Titulo = filmeRecebido.Titulo;
+            filme.Descricao=filmeRecebido.Descricao;
+            filme.QuantidadeDeOscars = filmeRecebido.Oscars;
+            filme.Duracao = filmeRecebido.Duracao;
+            filme.Valor = filmeRecebido.Valor;
+            
 
             _biblioteca.Add(filme);
+            return filme;
         }
 
         public Item CadastrarSerie(SerieViewModel serieRecebida)

@@ -1,7 +1,9 @@
 ﻿using Locadora.Models;
+using Locadora.Respository;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora.API.Controllers
 {
@@ -20,9 +22,10 @@ namespace Locadora.API.Controllers
          * https://localhost:5001/api/locadora
          */
         [HttpGet]
-        public IActionResult ItensBiblioteca()
+        public List<Item> ItensBiblioteca()
         {
-            return Ok(itens);
+            return Armazenamento.Biblioteca.ToList();
         }
     }
+    
 }
