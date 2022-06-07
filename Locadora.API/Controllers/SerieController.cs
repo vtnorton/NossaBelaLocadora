@@ -21,7 +21,7 @@ namespace Locadora.API.Controllers
             string nomeDaSerie = serieRecebida.Titulo;
             int valorDoItem = serieRecebida.Valor;
             Item serieCriada = _serieServices.CadastrarSerie(serieRecebida);
-            return Created("usuarios", serieCriada);
+            return Created("serie", serieCriada);
         }
 
       
