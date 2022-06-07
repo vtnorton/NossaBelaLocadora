@@ -10,6 +10,8 @@ namespace Locadora.Services
     public class GestaoServices
     {
         private List<Item> _biblioteca = Armazenamento.Biblioteca;
+        private SerieViewModel serieRecebida;
+
         public void Cadastrar()
         {
             Console.WriteLine("O que deseja cadastrar?");
@@ -24,7 +26,7 @@ namespace Locadora.Services
             }
             if (respotas == 2)
             {
-                CadastrarSerie();
+                CadastrarSerie(serieRecebida);
             }
         }
 
@@ -49,19 +51,13 @@ namespace Locadora.Services
 
         public void CadastrarSerie(SerieViewModel serieRecebida)
         {
-            Serie serie = new Serie(serieRecebida);
-
-            Console.WriteLine("Qual o nome da série que deseja cadastrar?");
-            serie.Titulo = Console.ReadLine();
-
-            Console.WriteLine("Quantos cópias desta série existem?");
-            serie.Quantidade = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Qual o valor da locação deste séries?");
-            serie.Valor = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Quantas temporadas tem esta série?");
-            serie.Temporadas = int.Parse(Console.ReadLine());
+            Serie serie = new Serie();
+            serie.Descricao = serieRecebida.Descricao;
+            serie.Quantidade= serieRecebida.Quantidade;
+            serie.Emmies = serieRecebida.Emmys;
+            serie.Titulo= serieRecebida.Titulo;
+            serie.Valor= serieRecebida.Valor;
+            
 
             _biblioteca.Add(serie);
         }

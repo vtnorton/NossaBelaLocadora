@@ -15,7 +15,6 @@ namespace Locadora.Models
 
         public string Titulo { get; set; }
 
-      
         public string Descricao { get; set; }
 
         public Item()
