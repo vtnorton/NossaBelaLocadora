@@ -13,7 +13,8 @@ namespace Locadora.Models
 
         public Filme(FilmeViewModel filmeRecebido)
         {
-            this.filmeRecebido = filmeRecebido;
+            Duracao = filmeRecebido.Duracao;
+            QuantidadeDeOscars = filmeRecebido.QuantidadeDeOscars;
         }
       
         public int Duracao { get; set; }

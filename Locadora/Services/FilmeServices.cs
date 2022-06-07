@@ -30,7 +30,8 @@ namespace Locadora.Services
             return null;
         }
 
-        private List<Filme> ListarFilmes()
+        
+        public List<Filme> ListarFilmes()
         {
             throw new NotImplementedException();
         }
