@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Locadora.Models
+namespace Locadora.ViewModel
 {
-    public class SerieViewModel : Item
+    internal class SerieViewModel
     {
+        public string Titulo { get; set; }
         public int Temporadas { get; set; }
-        public int Emmies { get; set; }
     }
 }

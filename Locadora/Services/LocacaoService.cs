@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Locadora.Models;
+using Locadora.Respository;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,6 +10,12 @@ namespace Locadora.Services
     // trabalhar com a lista de usuários
     public class LocacaoService
     {
-        // qual usuário pegou qual filme
+        public Item CadastrarSerie(SerieViewModel serieRecebida)
+        {
+            Item serie = new Item();
+            Armazenamento.Biblioteca.Add(serieRecebida);
+            return serie;
+        }
+
     }
 }

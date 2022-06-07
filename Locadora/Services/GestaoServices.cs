@@ -48,7 +48,7 @@ namespace Locadora.Services
 
         public void CadastrarSerie()
         {
-            Serie serie = new Serie();
+            SerieViewModel serie = new SerieViewModel();
 
             Console.WriteLine("Qual o nome da série que deseja cadastrar?");
             serie.Titulo = Console.ReadLine();
