@@ -1,5 +1,6 @@
 ﻿using Locadora.Models;
 using Locadora.Services;
+using Locadora.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,14 +13,11 @@ namespace Locadora.API.Controllers
     public class SerieController : ControllerBase
     {
         List<Item> _serie = new List<Item>();
-        private LocacaoService _serieServices = new LocacaoService();
+        private GestaoServices _serieServices = new GestaoServices();
 
         [HttpPost]
         public ActionResult CadastrarSerie([FromBody] SerieViewModel serieRecebida)
         {
-            
-            string nomeDaSerie = serieRecebida.Titulo;
-            int valorDoItem = serieRecebida.Valor;
             Item serieCriada = _serieServices.CadastrarSerie(serieRecebida);
             return Created("serie", serieCriada);
         }

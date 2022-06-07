@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Locadora.Models
 {
-    public class SerieViewModel : Item
+    public class Serie : Item
     {
         public int Temporadas { get; set; }
         public int Emmies { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Locadora.Models;
 using Locadora.Respository;
+using Locadora.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -46,9 +47,9 @@ namespace Locadora.Services
             _biblioteca.Add(filme);
         }
 
-        public void CadastrarSerie()
+        public void CadastrarSerie(SerieViewModel serieRecebida)
         {
-            SerieViewModel serie = new SerieViewModel();
+            Serie serie = new Serie(serieRecebida);
 
             Console.WriteLine("Qual o nome da série que deseja cadastrar?");
             serie.Titulo = Console.ReadLine();

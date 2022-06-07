@@ -4,9 +4,13 @@ using System.Text;
 
 namespace Locadora.ViewModel
 {
-    internal class SerieViewModel
+    public class SerieViewModel
     {
         public string Titulo { get; set; }
         public int Temporadas { get; set; }
+        public int Emmys { get; set; }
+        public int Quantidade { get; set; }
+        public int Valor { get; set; }
+        public string Descricao { get; set; }
     }
 }
