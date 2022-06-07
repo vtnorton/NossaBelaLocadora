@@ -5,6 +5,7 @@ using Locadora.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora.API.Controllers
 {
@@ -23,10 +24,23 @@ namespace Locadora.API.Controllers
             // no inicio do código
             // Ctrl + . é um atalho para adicionar esse using.
 
-            List<Usuario> listaUsuario = 
-                Armazenamento.Usuarios;
+            List<Usuario> listaUsuario = Armazenamento.Usuarios.OrderBy(usuario => usuario.Nome)
+                .ThenBy(usuario => usuario.Idade).ToList();
+            
             return listaUsuario;
-        } 
+        }
+        [HttpGet("{id}")]
+
+        public IActionResult ObterUsuario(string id)
+        {
+            Usuario usuario = _usuarioServices.ObterUsuario(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return Ok(usuario);
+        }
+
 
         [HttpPost]
         public ActionResult CadastrarUsuario(
@@ -46,6 +60,7 @@ namespace Locadora.API.Controllers
                 return BadRequest("Não é permitido o cadastro de pessoa menor de idade.");
             }
             
+
             Usuario objetoCriado = _usuarioServices.CadastrarUsuario(usuarioRecebido);
             return Created("usuario", objetoCriado);
         }
