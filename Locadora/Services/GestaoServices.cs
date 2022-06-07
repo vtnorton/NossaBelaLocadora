@@ -49,7 +49,7 @@ namespace Locadora.Services
             _biblioteca.Add(filme);
         }
 
-        public void CadastrarSerie(SerieViewModel serieRecebida)
+        public Item CadastrarSerie(SerieViewModel serieRecebida)
         {
             Serie serie = new Serie();
             serie.Descricao = serieRecebida.Descricao;
@@ -60,6 +60,7 @@ namespace Locadora.Services
             
 
             _biblioteca.Add(serie);
+            return serie;
         }
     }
 }
