@@ -34,6 +34,8 @@ namespace Locadora.Services
         public void CadastrarFilme()
         {
             Filme filme = new Filme(filmeRecebido);
+            filme.Titulo = filmeRecebido.Titulo;
+            filme.Quantidade = filmeRecebido.Quantidade;
 
             Console.WriteLine("Qual o nome do filme que deseja cadastrar?");
             filme.Titulo = Console.ReadLine();

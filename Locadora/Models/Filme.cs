@@ -7,7 +7,7 @@ namespace Locadora.Models
 {
     public class Filme : Item
     {
-        private FilmeViewModel filmeRecebido;
+        public FilmeViewModel filmeRecebido;
 
 
 
@@ -21,5 +21,14 @@ namespace Locadora.Models
         public int QuantidadeDeOscars { get; set; }
         public Guid IdFilme { get; set; }
 
+        public static Filme ObterFilme(string idFilme)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Filme CadastrarFilme(Filme filmeRecebido)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

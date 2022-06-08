@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Locadora.ViewModel
 {
-    internal class SerieViewModel
+    public class SerieViewModel
     {
         public string NomeDaSerie { get; set; }
         public int QuantidadeDETemporadas { get; set; }
