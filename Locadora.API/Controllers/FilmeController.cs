@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Locadora.API.Controllers
+{
+    class Class1
+    {
+=======
 ﻿using Locadora.Models;
 using Locadora.Respository;
 using Microsoft.AspNetCore.Http;
@@ -63,5 +73,6 @@ namespace Locadora.API.Controllers
         public void Delete(int id)
         {
         }
+>>>>>>> c33975fd5d68d7567c480417215fb52e41dcb98f
     }
 }
