@@ -1,5 +1,6 @@
 ﻿using Locadora.Models;
 using Locadora.Respository;
+using Locadora.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,9 @@ namespace Locadora.Services
     public class GestaoServices
     {
         private List<Item> _biblioteca = Armazenamento.Biblioteca;
+
+        public FilmeViewModel filmeRecebido { get; set; }
+
         public void Cadastrar()
         {
             Console.WriteLine("O que deseja cadastrar?");
@@ -29,7 +33,7 @@ namespace Locadora.Services
 
         public void CadastrarFilme()
         {
-            Filme filme = new Filme();
+            Filme filme = new Filme(filmeRecebido);
 
             Console.WriteLine("Qual o nome do filme que deseja cadastrar?");
             filme.Titulo = Console.ReadLine();
