@@ -9,5 +9,6 @@ namespace Locadora.ViewModel
         public string NomeDaSerie { get; set; }
         public int QuantidadeDETemporadas { get; set; }
         public string GeneroDaSerie { get; set; }
+        public string Titulo { get; set; }
     }
 }

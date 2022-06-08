@@ -1,6 +1,7 @@
 ﻿using Locadora.Models;
 using Locadora.Respository;
 using Locadora.Services;
+using Locadora.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace Locadora.API.Controllers
         }
         // POST: api/Filme
         [HttpPost]
-        public ActionResult CadastrarFilme([FromBody]  Filme filmeRecebido)
+        public ActionResult CadastrarFilme([FromBody]  FilmeViewModel filmeRecebido)
         {
             if (filmeRecebido == null)
             {
@@ -49,7 +50,7 @@ namespace Locadora.API.Controllers
 
 
 
-            Filme objetoCriado = Filme.CadastrarFilme(filmeRecebido);
+            Filme objetoCriado = _filmeServices.CadastrarFilmes(filmeRecebido);
             return Created("filme", objetoCriado);
         }
 

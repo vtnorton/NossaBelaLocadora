@@ -1,4 +1,6 @@
-﻿using Locadora.Services;
+﻿using Locadora.Models;
+using Locadora.Services;
+using Locadora.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -27,8 +29,23 @@ namespace Locadora.API.Controllers
 
         // POST: api/Serie
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult CadastrarSerie(
+            [FromBody] SerieViewModel serieRecebida)
         {
+            if (serieRecebida == null)
+            {
+                return BadRequest("não foi recebido nenhum usuário.");
+            }
+            string TituloDaSerie = serieRecebida.Titulo;
+            if (string.IsNullOrEmpty(TituloDaSerie))
+            {
+                return BadRequest("Não foi recebido nenhum usuario");
+            }
+           
+
+
+            Serie objetoCriado = _serieServices.CadastrarSerie(serieRecebida);
+            return Created("serie", objetoCriado);
         }
 
         // PUT: api/Serie/5

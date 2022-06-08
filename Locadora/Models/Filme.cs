@@ -21,14 +21,6 @@ namespace Locadora.Models
         public int QuantidadeDeOscars { get; set; }
         public Guid IdFilme { get; set; }
 
-        public static Filme ObterFilme(string idFilme)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static Filme CadastrarFilme(Filme filmeRecebido)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

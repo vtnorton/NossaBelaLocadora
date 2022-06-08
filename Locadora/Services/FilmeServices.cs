@@ -19,8 +19,11 @@ namespace Locadora.Services
 
             return filme;
         }
-       
-        
+        public List<Filme> ListarFilmes()
+        {
+            return Armazenamento.Filmes;
+        }
+
         public Filme ObterFilme(string idRecebido)
         {
             List<Filme> lista = ListarFilmes();
@@ -33,9 +36,6 @@ namespace Locadora.Services
         }
 
         
-        public List<Filme> ListarFilmes()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

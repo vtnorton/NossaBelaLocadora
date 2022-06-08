@@ -38,5 +38,10 @@ namespace Locadora.Services
         {
             throw new NotImplementedException();
         }
+
+        public Serie CadastrarSerie(SerieViewModel serieRecebida)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
