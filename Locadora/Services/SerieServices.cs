@@ -12,10 +12,11 @@ namespace Locadora.Services
     {
         public Serie CadastrarSeries(SerieViewModel serieRecebido)
         {
-            Serie serie = new Serie(serieRecebido);
+            Serie serie = new Serie();
+            serie.Titulo = serieRecebido.NomeDaSerie;
 
 
-            Armazenamento.Serie.Add(serie);
+            Armazenamento.Series.Add(serie);
             
             return serie;
         }
