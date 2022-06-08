@@ -1,5 +1,6 @@
-﻿using Locadora.Models;
+
 using Locadora.Respository;
+using Locadora.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,6 @@ namespace Locadora.Services
     public class GestaoServices
     {
 
-        FuncoesServiços funcoesServiços = new FuncoesServiços();
         public void Cadastrar()
         {
             Console.WriteLine("O que deseja cadastrar?");
@@ -32,6 +32,6 @@ namespace Locadora.Services
             }
         }
 
-        
+
     }
 }
