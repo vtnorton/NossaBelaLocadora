@@ -9,11 +9,9 @@ namespace Locadora.API.Services
 {
     public class UsuarioServices
     {
-        public Usuario CadastrarUsuario(
-            UsuarioViewModel usuarioRecebeido)
+        public Usuario CadastrarUsuario(UsuarioViewModel usuarioRecebeido)
         {
-            Usuario usuario = 
-                new Usuario(usuarioRecebeido);
+            Usuario usuario = new Usuario(usuarioRecebeido);
             Armazenamento.Usuarios.Add(usuario);
 
             return usuario;
@@ -38,6 +36,17 @@ namespace Locadora.API.Services
                 return usuario;
             }
 
+            return null;
+        }
+        
+        public Usuario ObterUsuario(string idRecebido)
+        {
+            List<Usuario> lista = ListarUsuarios();
+            if (lista.Any(u => u.Id.ToString() == idRecebido))
+            {
+                Usuario usuario = lista.Where(u => u.Id.ToString() == idRecebido).First();
+                return usuario;
+            }
             return null;
         }
     }
