@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Locadora.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -8,6 +9,8 @@ namespace Locadora.API.Controllers
     [ApiController]
     public class SerieController : ControllerBase
     {
+        
+        private SerieServices _serieServices = new SerieServices();
         // GET: api/Serie
         [HttpGet]
         public IEnumerable<string> Get()
