@@ -38,16 +38,5 @@ namespace Locadora.API.Services
 
             return null;
         }
-        
-        public Usuario ObterUsuario(string idRecebido)
-        {
-            List<Usuario> lista = ListarUsuarios();
-            if (lista.Any(u => u.Id.ToString() == idRecebido))
-            {
-                Usuario usuario = lista.Where(u => u.Id.ToString() == idRecebido).First();
-                return usuario;
-            }
-            return null;
-        }
     }
 }

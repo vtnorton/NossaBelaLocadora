@@ -26,14 +26,7 @@ namespace Locadora.Models
         }
         public Guid Id { get; set; }
         public int Idade { get; set; }
-
-        public Guid Id { get; set; }
-
-        public int Idade { get; set; }
-
         public string Nome { get; set; }
-
-
         public Conta Conta { get; set; }
 
     }

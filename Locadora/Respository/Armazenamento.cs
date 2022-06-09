@@ -13,11 +13,5 @@ namespace Locadora.Respository
             new List<Filme>();
         public static List<Serie> Series =
             new List<Serie>();
-
-        public static List<Serie> Series = 
-            new List<Serie>();
-
-        public static List<Filme> Filmes =
-            new List<Filme>();
     }
 }
