@@ -15,5 +15,6 @@ namespace Locadora.ViewModel
         public int Valor { get; set; }
         public int Duracao { get; set; }
         public int QuantidadeDeOscars { get; set; }
+        public string GeneroDoFilme { get; set; }
     }
 }

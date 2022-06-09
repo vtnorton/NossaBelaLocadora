@@ -43,7 +43,6 @@ namespace Locadora.API.Controllers
         {
             List<Usuario> listaUsuario =
                 _usuarioServices.ListarUsuarios();
-
             return listaUsuario;
         }
 
@@ -56,6 +55,7 @@ namespace Locadora.API.Controllers
                 return NotFound();
             }
             return Ok(usuario);
+
         }
     }
 }

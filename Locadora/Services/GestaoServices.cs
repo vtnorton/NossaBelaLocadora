@@ -17,7 +17,7 @@ namespace Locadora.Services
 
         public Filme CadastrarFilme(FilmeViewModel filmeRecebido)
         {
-            Filme filme = new Filme();
+            Filme filme = new Filme(filmeRecebido);
 
             filme.Titulo = filmeRecebido.Titulo;
             filme.Duracao = filmeRecebido.Duracao;

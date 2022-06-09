@@ -9,6 +9,10 @@ namespace Locadora.Respository
     {
         public static List<Usuario> Usuarios =
             new List<Usuario>();
+        public static List<Filme> Filmes =
+            new List<Filme>();
+        public static List<Serie> Series =
+            new List<Serie>();
 
         public static List<Serie> Series = 
             new List<Serie>();
