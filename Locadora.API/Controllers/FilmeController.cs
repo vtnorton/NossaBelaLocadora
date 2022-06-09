@@ -11,14 +11,14 @@ namespace Locadora.API.Controllers
     [ApiController]
     public class FilmeController : ControllerBase
     {
-        List<Item> _filme = new List<Item>();
+        List<Filme> _filme = new List<Filme>();
         private GestaoServices _filmeServices = new GestaoServices();
         
 
         [HttpPost]
         public ActionResult CadastrarFilme([FromBody] FilmeViewModel filmeRecebido)
         {
-            Item filmeCriado = _filmeServices.CadastrarFilme(filmeRecebido);
+            Filme filmeCriado = _filmeServices.CadastrarFilme(filmeRecebido);
             return Created("filme", filmeCriado);
         }
 

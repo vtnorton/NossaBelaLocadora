@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Locadora.ViewModel
 {
-    public class SerieViewModel
+    public class SerieViewModel //classe que vamos receber parametros do usuario
     {
         [Required(ErrorMessage = "O campo título é obrigatório")]
         public string Titulo { get; set; }

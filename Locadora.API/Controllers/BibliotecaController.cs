@@ -1,5 +1,6 @@
 ﻿using Locadora.Models;
 using Locadora.Respository;
+using Locadora.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,20 +12,13 @@ namespace Locadora.API.Controllers
     [Route("biblioteca")]
     public class BibliotecaController : ControllerBase
     {
-        private static List<Item> itens = new List<Item>();
-        /*
-         * https://localhost:5001/locadora
-         * HTTPS => Protocolo
-         * localhost => aonde está o site
-         * 5001 => porta que o servidor está usando
-         * locadora => rota
-         * 
-         * https://localhost:5001/api/locadora
-         */
+        private GestaoServices _serviços = new GestaoServices();
+        
         [HttpGet]
-        public List<Item> ItensBiblioteca()
+        public ActionResult ObterBiblioteca()
         {
-            return Armazenamento.Biblioteca.ToList();
+           
+            return Ok(_serviços.ListarItens());
         }
     }
     

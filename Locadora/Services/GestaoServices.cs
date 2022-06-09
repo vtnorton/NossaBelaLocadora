@@ -3,35 +3,28 @@ using Locadora.Respository;
 using Locadora.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Locadora.Services
 {
     public class GestaoServices
     {
-        private List<Item> _biblioteca = Armazenamento.Biblioteca;
+        private List<Filme> _filmes = Armazenamento.Filmes;
+        private List<Serie> _series = Armazenamento.Series;
         private SerieViewModel serieRecebida;
         private FilmeViewModel filmeRecebido;
 
-        public void Cadastrar()
+        public List<object> ListarItens()
         {
-            Console.WriteLine("O que deseja cadastrar?");
-            Console.WriteLine("1 - Filme");
-            Console.WriteLine("2 - Série");
-            Console.WriteLine("Qualquer outro número para voltar");
+            List<object> listaRetornada = new List<object>();
 
-            int respotas = int.Parse(Console.ReadLine());
-            if (respotas == 1)
-            {
-                CadastrarFilme(filmeRecebido);
-            }
-            if (respotas == 2)
-            {
-                CadastrarSerie(serieRecebida);
-            }
+            listaRetornada.AddRange(_filmes);
+            listaRetornada.AddRange(_series);
+            return listaRetornada;
         }
 
-        public Item CadastrarFilme(FilmeViewModel filmeRecebido)
+        public Filme CadastrarFilme(FilmeViewModel filmeRecebido)
         {
             Filme filme = new Filme();
             filme.Titulo = filmeRecebido.Titulo;
@@ -39,13 +32,14 @@ namespace Locadora.Services
             filme.QuantidadeDeOscars = filmeRecebido.Oscars;
             filme.Duracao = filmeRecebido.Duracao;
             filme.Valor = filmeRecebido.Valor;
+            filme.Quantidade = filmeRecebido.Quantidade;
             
 
-            _biblioteca.Add(filme);
+            _filmes.Add(filme);
             return filme;
         }
 
-        public Item CadastrarSerie(SerieViewModel serieRecebida)
+        public Serie CadastrarSerie(SerieViewModel serieRecebida)
         {
             Serie serie = new Serie();
             serie.Descricao = serieRecebida.Descricao;
@@ -53,10 +47,13 @@ namespace Locadora.Services
             serie.Emmies = serieRecebida.Emmys;
             serie.Titulo= serieRecebida.Titulo;
             serie.Valor= serieRecebida.Valor;
+            serie.Temporadas = serieRecebida.Temporadas;
+            
             
 
-            _biblioteca.Add(serie);
+            _series.Add(serie);
             return serie;
         }
+       
     }
 }

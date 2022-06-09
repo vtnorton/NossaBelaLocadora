@@ -8,7 +8,7 @@ namespace Locadora.Models
 {
     public class Item
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public int Quantidade { get; set; }
         public int Valor { get; set; }
@@ -19,9 +19,7 @@ namespace Locadora.Models
 
         public Item()
         {
-            List<Item> itens = Armazenamento.Biblioteca;
-            int quantidadeDeItens = 1000 + itens.Count;
-            Id = quantidadeDeItens++;
+            Id = Guid.NewGuid();
         }
     }
 }
