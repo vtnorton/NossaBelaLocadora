@@ -12,7 +12,7 @@ namespace Locadora.API.Controllers
     public class SerieController : ControllerBase
     {
         
-        private SerieServices _serieServices = new SerieServices();
+        public SerieServices _serieServices = new SerieServices();
         // GET: api/Serie
         [HttpGet]
         public IEnumerable<string> Get()
@@ -44,7 +44,7 @@ namespace Locadora.API.Controllers
            
 
 
-            Serie objetoCriado = _serieServices.CadastrarSerie(serieRecebida);
+            Serie objetoCriado = _serieServices.CadastrarSeries(serieRecebida);
             return Created("serie", objetoCriado);
         }
 

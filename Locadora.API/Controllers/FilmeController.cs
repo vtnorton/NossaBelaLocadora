@@ -36,7 +36,7 @@ namespace Locadora.API.Controllers
         }
         // POST: api/Filme
         [HttpPost]
-        public ActionResult CadastrarFilme([FromBody]  FilmeViewModel filmeRecebido)
+        public ActionResult CadastrarFilme([FromBody] FilmeViewModel filmeRecebido)
         {
             if (filmeRecebido == null)
             {
@@ -51,7 +51,8 @@ namespace Locadora.API.Controllers
 
 
             Filme objetoCriado = _filmeServices.CadastrarFilmes(filmeRecebido);
-            return Created("filme", objetoCriado);
+            
+            return Created("filmes", objetoCriado);
         }
 
         // PUT: api/Filme/5

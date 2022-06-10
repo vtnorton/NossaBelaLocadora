@@ -9,9 +9,10 @@ namespace Locadora.Services
 {
     public class GestaoServices
     {
-        private List<Item> _biblioteca = Armazenamento.Biblioteca;
+        public List<Item> _biblioteca = Armazenamento.Biblioteca;
 
         public FilmeViewModel filmeRecebido { get; set; }
+        public SerieViewModel serieRecebida { get; set; }
 
         public void Cadastrar()
         {
@@ -23,11 +24,11 @@ namespace Locadora.Services
             int respotas = int.Parse(Console.ReadLine());
             if (respotas == 1)
             {
-                CadastrarFilme();
+               // CadastrarFilme();
             }
             if (respotas == 2)
             {
-                CadastrarSerie();
+                //CadastrarSerie();
             }
         }
 
@@ -37,36 +38,16 @@ namespace Locadora.Services
             filme.Titulo = filmeRecebido.Titulo;
             filme.Quantidade = filmeRecebido.Quantidade;
 
-            Console.WriteLine("Qual o nome do filme que deseja cadastrar?");
-            filme.Titulo = Console.ReadLine();
-
-            Console.WriteLine("Quantos fitas deste filme existem?");
-            filme.Quantidade = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Qual o valor da locação deste filme?");
-            filme.Valor = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Qual a duração do filme?");
-            filme.Duracao = int.Parse(Console.ReadLine());
-
-            _biblioteca.Add(filme);
+                _biblioteca.Add(filme);
         }
 
         public void CadastrarSerie()
         {
-            Serie serie = new Serie();
+            Serie serie = new Serie(serieRecebida);
+            serie.Titulo = serieRecebida.Titulo;
+            serie.Quantidade = serieRecebida.QuantidadeDETemporadas;
+            
 
-            Console.WriteLine("Qual o nome da série que deseja cadastrar?");
-            serie.Titulo = Console.ReadLine();
-
-            Console.WriteLine("Quantos cópias desta série existem?");
-            serie.Quantidade = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Qual o valor da locação deste séries?");
-            serie.Valor = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Quantas temporadas tem esta série?");
-            serie.Temporadas = int.Parse(Console.ReadLine());
 
             _biblioteca.Add(serie);
         }

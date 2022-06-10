@@ -10,10 +10,10 @@ namespace Locadora.Services
 {
     public class SerieServices
     {
-        public Serie CadastrarSeries(SerieViewModel serieRecebido)
+        public Serie CadastrarSeries(SerieViewModel serieRecebida)
         {
-            Serie serie = new Serie();
-            serie.Titulo = serieRecebido.NomeDaSerie;
+            Serie serie = new Serie(serieRecebida);
+            serie.Titulo = serieRecebida.NomeDaSerie;
 
 
             Armazenamento.Series.Add(serie);
@@ -21,7 +21,10 @@ namespace Locadora.Services
             return serie;
         }
 
-
+        public List<Serie> ListarSeries()
+        {
+            return Armazenamento.Series;
+        }
         public Serie ObterSerie(string idRecebido)
         {
             List<Serie> lista = ListarSeries();
@@ -33,15 +36,5 @@ namespace Locadora.Services
             return null;
         }
 
-
-        public List<Serie> ListarSeries()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Serie CadastrarSerie(SerieViewModel serieRecebida)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
