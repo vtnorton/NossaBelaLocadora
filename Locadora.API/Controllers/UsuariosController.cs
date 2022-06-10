@@ -13,24 +13,40 @@ namespace Locadora.API.Controllers
     [Route("[controller]")]
     public class UsuariosController : ControllerBase
     {
+        private UsuarioServices _usuarioServices =
+            new UsuarioServices();
 
-        private UsuarioServices _usuarioServices = new UsuarioServices();
-        
+        [HttpPost]
+        public ActionResult CadastrarUsuario(
+            [FromBody] UsuarioViewModel usuarioRecebido)
+        {
+            if (usuarioRecebido == null) {
+                return BadRequest("Não foi recebido nenhum usuário.");
+            }
+
+            if (string.IsNullOrEmpty(usuarioRecebido.Nome)) {
+                return BadRequest("Nome do usuário não foi informado. 🥲");
+            }
+
+            if (usuarioRecebido.Idade < 18) {
+                return BadRequest("Não é permitido o cadastro de pessoas menores de idade");
+            }
+
+            Usuario objetoCriado = _usuarioServices
+                .CadastrarUsuario(usuarioRecebido);
+
+            return Created("usuarios", objetoCriado);
+        }
+
         [HttpGet]
         public List<Usuario> ListarUsuarios()
         {
-            // Armazenamento vai precisar colocar o
-            // using AulasPCDev.Respository;
-            // no inicio do código
-            // Ctrl + . é um atalho para adicionar esse using.
-
-            List<Usuario> listaUsuario = Armazenamento.Usuarios.OrderBy(usuario => usuario.Nome)
-                .ThenBy(usuario => usuario.Idade).ToList();
-            
+            List<Usuario> listaUsuario =
+                _usuarioServices.ListarUsuarios();
             return listaUsuario;
         }
-        [HttpGet("{id}")]
 
+        [HttpGet("{id}")] //CONTROLADORA
         public IActionResult ObterUsuario(string id)
         {
             Usuario usuario = _usuarioServices.ObterUsuario(id);
@@ -39,30 +55,7 @@ namespace Locadora.API.Controllers
                 return NotFound();
             }
             return Ok(usuario);
-        }
 
-
-        [HttpPost]
-        public ActionResult CadastrarUsuario(
-            [FromBody] UsuarioViewModel usuarioRecebido)
-        {
-            if (usuarioRecebido == null)
-            {
-                return BadRequest("não foi recebido nenhum usuário.");
-            }
-            string nomeDoUsuario = usuarioRecebido.Nome;
-            if(string.IsNullOrEmpty(nomeDoUsuario))
-            {
-                return BadRequest("Não foi recebido nenhum usuario");
-            }
-            if(usuarioRecebido.Idade < 18)
-            {
-                return BadRequest("Não é permitido o cadastro de pessoa menor de idade.");
-            }
-            
-
-            Usuario objetoCriado = _usuarioServices.CadastrarUsuario(usuarioRecebido);
-            return Created("usuario", objetoCriado);
         }
     }
 }

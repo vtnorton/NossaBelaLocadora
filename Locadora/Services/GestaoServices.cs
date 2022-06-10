@@ -9,47 +9,61 @@ namespace Locadora.Services
 {
     public class GestaoServices
     {
-        public List<Item> _biblioteca = Armazenamento.Biblioteca;
 
-        public FilmeViewModel filmeRecebido { get; set; }
-        public SerieViewModel serieRecebida { get; set; }
+        private ApplicationDBContext _context = new ApplicationDBContext();
+        /*
+        private List<Filme> _listaFilmes = 
+            Armazenamento.Filmes;
 
-        public void Cadastrar()
-        {
-            Console.WriteLine("O que deseja cadastrar?");
-            Console.WriteLine("1 - Filme");
-            Console.WriteLine("2 - Série");
-            Console.WriteLine("Qualquer outro número para voltar");
+        private List<Serie> _listaSeries =
+            Armazenamento.Series;*/
 
-            int respotas = int.Parse(Console.ReadLine());
-            if (respotas == 1)
-            {
-               // CadastrarFilme();
-            }
-            if (respotas == 2)
-            {
-                //CadastrarSerie();
-            }
-        }
 
-        public void CadastrarFilme()
+        public Filme CadastrarFilme(FilmeViewModel filmeRecebido)
         {
             Filme filme = new Filme(filmeRecebido);
+
             filme.Titulo = filmeRecebido.Titulo;
+            filme.Duracao = filmeRecebido.Duracao;
+            filme.Descricao = filmeRecebido.Descricao;
+            filme.QuantidadeDeOscars = filmeRecebido.QuantidadeDeOscars;
             filme.Quantidade = filmeRecebido.Quantidade;
-
-                _biblioteca.Add(filme);
-        }
-
-        public void CadastrarSerie()
-        {
-            Serie serie = new Serie(serieRecebida);
-            serie.Titulo = serieRecebida.Titulo;
-            serie.Quantidade = serieRecebida.QuantidadeDETemporadas;
+            filme.Valor = filmeRecebido.Valor;
             
 
+            _context.TabelaDeFilme.Add(filme);
 
-            _biblioteca.Add(serie);
+            _context.SaveChanges();
+
+            return filme;
+        }
+        public Serie CadastrarSerie(SerieViewModel serieRecebida)
+        {
+            Serie serie = new Serie();
+            serie.Titulo = serieRecebida.Titulo;
+            serie.Descricao = serieRecebida.Descricao;
+            serie.Valor = serieRecebida.Valor;
+            serie.Temporadas = serieRecebida.Temporadas;
+
+
+            _context.TabelaDeSerie.Add(serie);
+
+            _context.SaveChanges();
+
+            return serie;
+        }
+
+        public List<object> ListarItens()
+        {
+            List<object> nomeQualquer = 
+                new List<object>();
+
+
+            nomeQualquer.AddRange(_context.TabelaDeFilme);
+            nomeQualquer.AddRange(_context.TabelaDeSerie);
+
+
+            return nomeQualquer;
         }
     }
 }
