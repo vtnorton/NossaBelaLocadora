@@ -1,5 +1,6 @@
 ﻿using Locadora.Models;
-using Locadora.Respository;
+using Locadora.Repository;
+using Locadora.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,61 +9,47 @@ namespace Locadora.Services
 {
     public class GestaoServices
     {
-        private List<Item> _biblioteca = Armazenamento.Biblioteca;
-        public void Cadastrar()
-        {
-            Console.WriteLine("O que deseja cadastrar?");
-            Console.WriteLine("1 - Filme");
-            Console.WriteLine("2 - Série");
-            Console.WriteLine("Qualquer outro número para voltar");
+        // removido Armazenamento.Biblioteca para gerar 2 Listas de Filmes e Séries
+        private List<Filme> _listaFilmes = Armazenamento.Filmes;
+        private List<Serie> _listaSeries = Armazenamento.Series;
 
-            int respotas = int.Parse(Console.ReadLine());
-            if (respotas == 1)
-            {
-                CadastrarFilme();
-            }
-            if (respotas == 2)
-            {
-                CadastrarSerie();
-            }
+        public List<object> ListarItens()
+        {
+            List<object> listaItens = new List<object>();
+
+            listaItens.AddRange(_listaSeries);
+            listaItens.AddRange(_listaFilmes);
+            return listaItens;
         }
 
-        public void CadastrarFilme()
+        public Filme CadastrarFilme(FilmeViewModel filmeRecebido)
         {
-            Filme filme = new Filme();
+            Filme filme = new Filme(filmeRecebido);
 
-            Console.WriteLine("Qual o nome do filme que deseja cadastrar?");
-            filme.Titulo = Console.ReadLine();
+            filme.Titulo = filmeRecebido.Titulo;
+            filme.Descricao = filmeRecebido.Descricao;
+            filme.Duracao = filmeRecebido.Duracao;
+            filme.qtdOscars = filmeRecebido.QtdOscars;
+            filme.Quantidade = filmeRecebido.Quantidade;
+            filme.Valor = filmeRecebido.Valor;
 
-            Console.WriteLine("Quantos fitas deste filme existem?");
-            filme.Quantidade = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Qual o valor da locação deste filme?");
-            filme.Valor = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Qual a duração do filme?");
-            filme.Duracao = int.Parse(Console.ReadLine());
-
-            _biblioteca.Add(filme);
+            _listaFilmes.Add(filme);
+            return filme;
         }
 
-        public void CadastrarSerie()
+        public Serie CadastrarSerie(SerieViewModel serieRecebido)
         {
-            Serie serie = new Serie();
+            Serie serie = new Serie(serieRecebido);
 
-            Console.WriteLine("Qual o nome da série que deseja cadastrar?");
-            serie.Titulo = Console.ReadLine();
+            serie.Titulo = serieRecebido.Titulo;
+            serie.Descricao = serieRecebido.Descricao;
+            serie.Temporadas = serieRecebido.Temporadas;
+            serie.Emmies = serieRecebido.Emmies;
+            serie.Quantidade = serieRecebido.Quantidade;
+            serie.Valor = serieRecebido.Valor;
 
-            Console.WriteLine("Quantos cópias desta série existem?");
-            serie.Quantidade = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Qual o valor da locação deste séries?");
-            serie.Valor = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Quantas temporadas tem esta série?");
-            serie.Temporadas = int.Parse(Console.ReadLine());
-
-            _biblioteca.Add(serie);
+            _listaSeries.Add(serie);
+            return serie;
         }
     }
 }

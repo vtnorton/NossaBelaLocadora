@@ -46,7 +46,7 @@ namespace Locadora
                         _usuarioServices.ListarUsuarios();
                         break;
                     case 3:
-                        _gestaoItens.Cadastrar();
+                        //_gestaoItens.Cadastrar();
                         break;
                     default:
                         continuar = false;
