@@ -7,9 +7,10 @@ namespace Locadora.Models
 {
     public class Filme : Item
     {
-        private FilmeViewModel filmeRecebido;
+        public Filme()
+        {
 
-
+        }
 
         public Filme(FilmeViewModel filmeRecebido)
         {

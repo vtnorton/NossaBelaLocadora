@@ -9,11 +9,8 @@ namespace Locadora.Services
 {
     public class GestaoServices
     {
-        private List<Filme> _listaFilmes = 
-            Armazenamento.Filmes;
-
-        private List<Serie> _listaSeries =
-            Armazenamento.Series;
+        private ApplicationDbContext _context = 
+            new ApplicationDbContext();
 
         public Filme CadastrarFilme(FilmeViewModel filmeRecebido)
         {
@@ -26,7 +23,8 @@ namespace Locadora.Services
             filme.Quantidade = filmeRecebido.Quantidade;
             filme.Valor = filmeRecebido.Valor;
             
-            _listaFilmes.Add(filme);
+            _context.TabelaDeFilmes.Add(filme);
+            _context.SaveChanges();
 
             return filme;
         }
@@ -38,7 +36,8 @@ namespace Locadora.Services
             serie.Valor = serieRecebida.Valor;
             serie.Temporadas = serieRecebida.Temporadas;
 
-            _listaSeries.Add(serie);
+            _context.TabelaDeSeries.Add(serie);
+            _context.SaveChanges();
 
             return serie;
         }
@@ -48,8 +47,8 @@ namespace Locadora.Services
             List<object> nomeQualquer = 
                 new List<object>();
 
-            nomeQualquer.AddRange(_listaFilmes);
-            nomeQualquer.AddRange(_listaSeries);
+            nomeQualquer.AddRange(_context.TabelaDeSeries);
+            nomeQualquer.AddRange(_context.TabelaDeFilmes);
 
             return nomeQualquer;
         }

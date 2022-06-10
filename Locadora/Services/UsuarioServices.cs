@@ -9,17 +9,17 @@ namespace Locadora.API.Services
 {
     public class UsuarioServices
     {
+        private ApplicationDbContext _context = 
+            new ApplicationDbContext();
         public Usuario CadastrarUsuario(UsuarioViewModel usuarioRecebeido)
         {
             Usuario usuario = new Usuario(usuarioRecebeido);
-            Armazenamento.Usuarios.Add(usuario);
-
+            _context.TabelaDeUsuarios.Add(usuario);
             return usuario;
         }
-
         public List<Usuario> ListarUsuarios()
         {
-            return Armazenamento.Usuarios
+            return _context.TabelaDeUsuarios
                 .OrderBy(usuario => usuario.Nome)
                 .ThenBy(usuario => usuario.Idade)
                 .ToList();

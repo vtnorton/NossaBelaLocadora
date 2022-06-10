@@ -1,6 +1,7 @@
 ﻿using Locadora.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Locadora.Models
@@ -9,6 +10,10 @@ namespace Locadora.Models
     {
         private readonly static int IDADE_MAIORIDADE = 18;
 
+        public Usuario()
+        {
+
+        }
         public Usuario(UsuarioViewModel usuarioBase)
         {
             
@@ -24,6 +29,8 @@ namespace Locadora.Models
             Nome = usuarioBase.Nome;
             Id = Guid.NewGuid();
         }
+
+        [Key]
         public Guid Id { get; set; }
         public int Idade { get; set; }
         public string Nome { get; set; }
