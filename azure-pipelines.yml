@@ -41,10 +41,4 @@ stages:
             artifactName: 'backendCompilado'
             downloadPath: '$(System.ArtifactsDirectory)'
 
-        - task: AzureRmWebAppDeployment@4
-          inputs:
-            ConnectionType: 'AzureRM'
-            azureSubscription: 'Visual Studio Enterprise(66617915-b071-43f5-b408-ccfcf9c4ab1e)'
-            appType: 'webApp'
-            WebAppName: 'vtnservices'
-            packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
