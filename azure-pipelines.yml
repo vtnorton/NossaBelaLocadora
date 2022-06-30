@@ -32,7 +32,7 @@ stages:
     displayName: "Lançamento do produto no ambiente dev"
     dependsOn: build
     jobs:
-      - job: backend-release
+      - job: backendRelease
         steps:
         - task: DownloadBuildArtifacts@1
           inputs:
