@@ -4,6 +4,14 @@ trigger:
   - develop
   - main
 
+variables:
+  buildConfiguration: "Release"
+  senhaBD: $(SENHADB)
+  ${{ if eq( variables['Build.SourceBranchName'], 'develop' ) }}:
+    baseUrl: "https://ambienteBeta.azurewebsites.net/"
+  ${{ if eq( variables['Build.SourceBranchName'], 'main' ) }}:
+    baseUrl: "https://ambienteProd.azurewebsites.net/"
+
 stages: 
   - stage: build
     displayName: "Compilando a minha aplicação"
@@ -31,6 +39,7 @@ stages:
   - stage: release
     displayName: "Lançamento do produto no ambiente dev"
     dependsOn: build
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
     jobs:
       - job: backendRelease
         steps:
@@ -41,4 +50,32 @@ stages:
             artifactName: 'backendCompilado'
             downloadPath: '$(System.ArtifactsDirectory)'
 
+        - task: AzureRmWebAppDeployment@4
+          inputs:
+            ConnectionType: 'AzureRM'
+            azureSubscription: 'Visual Studio Enterprise(66617915-b071-43f5-b408-ccfcf9c4ab1e)'
+            appType: 'webApp'
+            WebAppName: 'vtnservices'
+            packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
+  - stage: release
+    displayName: "Lançamento do produto no ambiente de produção"
+    dependsOn: build
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - job: backendRelease
+        steps:
+        - task: DownloadBuildArtifacts@1
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'backendCompilado'
+            downloadPath: '$(System.ArtifactsDirectory)'
+
+        - task: AzureRmWebAppDeployment@4
+          inputs:
+            ConnectionType: 'AzureRM'
+            azureSubscription: 'Visual Studio Enterprise(66617915-b071-43f5-b408-ccfcf9c4ab1e)'
+            appType: 'webApp'
+            WebAppName: 'vtnservices'
+            packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
